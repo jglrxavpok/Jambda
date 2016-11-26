@@ -1,21 +1,21 @@
 grammar Jambda;
 
 file:
-    package_declaration?
-    import_declaration*
-    function_declaration*;
+    packageDeclaration?
+    importDeclaration*
+    functionDeclaration*;
 
 function:
     lambda identifiers PERIOD expression;
 
-function_declaration:
+functionDeclaration:
     IDENTIFIER (DOUBLE_COLON IDENTIFIER SMALL_ARROW IDENTIFIER)? COLON function;
 
-package_declaration:
-    'package ' IDENTIFIER ('.' IDENTIFIER)*;
+packageDeclaration:
+    'package ' IDENTIFIER (PERIOD IDENTIFIER)*;
 
-import_declaration:
-    'import ' IDENTIFIER ('.' IDENTIFIER)*;
+importDeclaration:
+    'import ' IDENTIFIER (PERIOD IDENTIFIER)*;
 
 lambda:
     '\u03BB' | 'lambda '; // λ
@@ -24,9 +24,9 @@ identifiers:
     IDENTIFIER (',' IDENTIFIER)*;
 
 value:
-    IDENTIFIER | integer | float;
+    IDENTIFIER | integer | floatingPointNumber;
 
-float:
+floatingPointNumber:
     integer PERIOD integer FLOAT_TERMINATOR;
 
 expression:

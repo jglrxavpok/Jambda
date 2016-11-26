@@ -23,23 +23,23 @@ public interface JambdaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunction(JambdaParser.FunctionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JambdaParser#function_declaration}.
+	 * Visit a parse tree produced by {@link JambdaParser#functionDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunction_declaration(JambdaParser.Function_declarationContext ctx);
+	T visitFunctionDeclaration(JambdaParser.FunctionDeclarationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JambdaParser#package_declaration}.
+	 * Visit a parse tree produced by {@link JambdaParser#packageDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitPackage_declaration(JambdaParser.Package_declarationContext ctx);
+	T visitPackageDeclaration(JambdaParser.PackageDeclarationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JambdaParser#import_declaration}.
+	 * Visit a parse tree produced by {@link JambdaParser#importDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitImport_declaration(JambdaParser.Import_declarationContext ctx);
+	T visitImportDeclaration(JambdaParser.ImportDeclarationContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link JambdaParser#lambda}.
 	 * @param ctx the parse tree
@@ -59,17 +59,17 @@ public interface JambdaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitValue(JambdaParser.ValueContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link JambdaParser#floatingPointNumber}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFloatingPointNumber(JambdaParser.FloatingPointNumberContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link JambdaParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitExpression(JambdaParser.ExpressionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link JambdaParser#operation}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitOperation(JambdaParser.OperationContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link JambdaParser#integer}.
 	 * @param ctx the parse tree

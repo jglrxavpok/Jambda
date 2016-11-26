@@ -28,35 +28,35 @@ public interface JambdaListener extends ParseTreeListener {
 	 */
 	void exitFunction(JambdaParser.FunctionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JambdaParser#function_declaration}.
+	 * Enter a parse tree produced by {@link JambdaParser#functionDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunction_declaration(JambdaParser.Function_declarationContext ctx);
+	void enterFunctionDeclaration(JambdaParser.FunctionDeclarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JambdaParser#function_declaration}.
+	 * Exit a parse tree produced by {@link JambdaParser#functionDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunction_declaration(JambdaParser.Function_declarationContext ctx);
+	void exitFunctionDeclaration(JambdaParser.FunctionDeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JambdaParser#package_declaration}.
+	 * Enter a parse tree produced by {@link JambdaParser#packageDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterPackage_declaration(JambdaParser.Package_declarationContext ctx);
+	void enterPackageDeclaration(JambdaParser.PackageDeclarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JambdaParser#package_declaration}.
+	 * Exit a parse tree produced by {@link JambdaParser#packageDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitPackage_declaration(JambdaParser.Package_declarationContext ctx);
+	void exitPackageDeclaration(JambdaParser.PackageDeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JambdaParser#import_declaration}.
+	 * Enter a parse tree produced by {@link JambdaParser#importDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterImport_declaration(JambdaParser.Import_declarationContext ctx);
+	void enterImportDeclaration(JambdaParser.ImportDeclarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JambdaParser#import_declaration}.
+	 * Exit a parse tree produced by {@link JambdaParser#importDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitImport_declaration(JambdaParser.Import_declarationContext ctx);
+	void exitImportDeclaration(JambdaParser.ImportDeclarationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link JambdaParser#lambda}.
 	 * @param ctx the parse tree
@@ -88,6 +88,16 @@ public interface JambdaListener extends ParseTreeListener {
 	 */
 	void exitValue(JambdaParser.ValueContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link JambdaParser#floatingPointNumber}.
+	 * @param ctx the parse tree
+	 */
+	void enterFloatingPointNumber(JambdaParser.FloatingPointNumberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JambdaParser#floatingPointNumber}.
+	 * @param ctx the parse tree
+	 */
+	void exitFloatingPointNumber(JambdaParser.FloatingPointNumberContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link JambdaParser#expression}.
 	 * @param ctx the parse tree
 	 */
@@ -97,16 +107,6 @@ public interface JambdaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpression(JambdaParser.ExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link JambdaParser#operation}.
-	 * @param ctx the parse tree
-	 */
-	void enterOperation(JambdaParser.OperationContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link JambdaParser#operation}.
-	 * @param ctx the parse tree
-	 */
-	void exitOperation(JambdaParser.OperationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link JambdaParser#integer}.
 	 * @param ctx the parse tree

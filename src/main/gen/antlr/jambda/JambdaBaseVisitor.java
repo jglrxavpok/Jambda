@@ -31,21 +31,21 @@ public class JambdaBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunction_declaration(JambdaParser.Function_declarationContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFunctionDeclaration(JambdaParser.FunctionDeclarationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitPackage_declaration(JambdaParser.Package_declarationContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPackageDeclaration(JambdaParser.PackageDeclarationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitImport_declaration(JambdaParser.Import_declarationContext ctx) { return visitChildren(ctx); }
+	@Override public T visitImportDeclaration(JambdaParser.ImportDeclarationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -73,14 +73,14 @@ public class JambdaBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitExpression(JambdaParser.ExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFloatingPointNumber(JambdaParser.FloatingPointNumberContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitOperation(JambdaParser.OperationContext ctx) { return visitChildren(ctx); }
+	@Override public T visitExpression(JambdaParser.ExpressionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -40,37 +40,37 @@ public class JambdaBaseListener implements JambdaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunction_declaration(JambdaParser.Function_declarationContext ctx) { }
+	@Override public void enterFunctionDeclaration(JambdaParser.FunctionDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunction_declaration(JambdaParser.Function_declarationContext ctx) { }
+	@Override public void exitFunctionDeclaration(JambdaParser.FunctionDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPackage_declaration(JambdaParser.Package_declarationContext ctx) { }
+	@Override public void enterPackageDeclaration(JambdaParser.PackageDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPackage_declaration(JambdaParser.Package_declarationContext ctx) { }
+	@Override public void exitPackageDeclaration(JambdaParser.PackageDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterImport_declaration(JambdaParser.Import_declarationContext ctx) { }
+	@Override public void enterImportDeclaration(JambdaParser.ImportDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitImport_declaration(JambdaParser.Import_declarationContext ctx) { }
+	@Override public void exitImportDeclaration(JambdaParser.ImportDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -112,6 +112,18 @@ public class JambdaBaseListener implements JambdaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFloatingPointNumber(JambdaParser.FloatingPointNumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFloatingPointNumber(JambdaParser.FloatingPointNumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterExpression(JambdaParser.ExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -119,18 +131,6 @@ public class JambdaBaseListener implements JambdaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExpression(JambdaParser.ExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterOperation(JambdaParser.OperationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOperation(JambdaParser.OperationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
