@@ -23,23 +23,23 @@ lambda:
 identifiers:
     IDENTIFIER (',' IDENTIFIER)*;
 
-IDENTIFIER:
-    [a-zA-Z_]+;
-
 value:
-    IDENTIFIER| integer;
+    IDENTIFIER | integer | float;
+
+float:
+    integer PERIOD integer FLOAT_TERMINATOR;
 
 expression:
-    value | operation;
-
-operation:
-    value operator value;
+    value | expression operator expression | function | LEFT_PAREN expression RIGHT_PAREN;
 
 integer:
     DIGIT+;
 
 operator:
     PLUS | MINUS | MULTIPLY | DIVISION;
+
+FLOAT_TERMINATOR:
+    'f';
 
 DOUBLE_COLON:
     '::';
@@ -65,8 +65,17 @@ DIVISION:
 COLON:
     ':';
 
+LEFT_PAREN:
+    '(';
+
+RIGHT_PAREN:
+    ')';
+
 SMALL_ARROW:
     '->';
+
+IDENTIFIER:
+    [a-zA-Z_]+;
 
 letter:
     (LOWERCASE_LETTER | UPPERCASE_LETTER);
