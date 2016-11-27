@@ -29,6 +29,24 @@ public interface JambdaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunctionDeclaration(JambdaParser.FunctionDeclarationContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link JambdaParser#tuple}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTuple(JambdaParser.TupleContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JambdaParser#variableTuple}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariableTuple(JambdaParser.VariableTupleContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JambdaParser#type}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitType(JambdaParser.TypeContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link JambdaParser#packageDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -47,11 +65,11 @@ public interface JambdaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLambda(JambdaParser.LambdaContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JambdaParser#identifiers}.
+	 * Visit a parse tree produced by {@link JambdaParser#variables}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIdentifiers(JambdaParser.IdentifiersContext ctx);
+	T visitVariables(JambdaParser.VariablesContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link JambdaParser#value}.
 	 * @param ctx the parse tree
@@ -64,6 +82,12 @@ public interface JambdaVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFloatingPointNumber(JambdaParser.FloatingPointNumberContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JambdaParser#functionApplication}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionApplication(JambdaParser.FunctionApplicationContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link JambdaParser#expression}.
 	 * @param ctx the parse tree

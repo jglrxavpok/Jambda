@@ -52,6 +52,42 @@ public class JambdaBaseListener implements JambdaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterTuple(JambdaParser.TupleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTuple(JambdaParser.TupleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVariableTuple(JambdaParser.VariableTupleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVariableTuple(JambdaParser.VariableTupleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterType(JambdaParser.TypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitType(JambdaParser.TypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPackageDeclaration(JambdaParser.PackageDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -88,13 +124,13 @@ public class JambdaBaseListener implements JambdaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIdentifiers(JambdaParser.IdentifiersContext ctx) { }
+	@Override public void enterVariables(JambdaParser.VariablesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIdentifiers(JambdaParser.IdentifiersContext ctx) { }
+	@Override public void exitVariables(JambdaParser.VariablesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -119,6 +155,18 @@ public class JambdaBaseListener implements JambdaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFloatingPointNumber(JambdaParser.FloatingPointNumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunctionApplication(JambdaParser.FunctionApplicationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctionApplication(JambdaParser.FunctionApplicationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

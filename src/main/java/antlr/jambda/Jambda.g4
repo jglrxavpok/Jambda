@@ -6,10 +6,19 @@ file:
     functionDeclaration*;
 
 function:
-    lambda identifiers PERIOD expression | functionApplication;
+    lambda variables PERIOD expression | functionApplication;
 
 functionDeclaration:
-    IDENTIFIER (DOUBLE_COLON IDENTIFIER SMALL_ARROW IDENTIFIER)? COLON function;
+    IDENTIFIER (DOUBLE_COLON type SMALL_ARROW type)? COLON function;
+
+tuple:
+    LEFT_PAREN expression (',' expression)* RIGHT_PAREN;
+
+variableTuple:
+    LEFT_PAREN IDENTIFIER (',' IDENTIFIER)* RIGHT_PAREN;
+
+type:
+    IDENTIFIER | variableTuple;
 
 packageDeclaration:
     'package ' IDENTIFIER (PERIOD IDENTIFIER)*;
@@ -20,8 +29,8 @@ importDeclaration:
 lambda:
     '\u03BB' | 'lambda '; // λ
 
-identifiers:
-    IDENTIFIER (',' IDENTIFIER)*;
+variables:
+    IDENTIFIER | variableTuple;
 
 value:
     IDENTIFIER | integer | floatingPointNumber;
@@ -31,10 +40,10 @@ floatingPointNumber:
 
 functionApplication:
     | IDENTIFIER/*function*/ expression/*arg*/
-    | IDENTIFIER/*function*/ LEFT_PAREN expression (',' expression) RIGHT_PAREN;
+    | IDENTIFIER/*function*/ LEFT_PAREN expression (',' expression)* RIGHT_PAREN;
 
 expression:
-    value | expression operator expression | function | LEFT_PAREN expression RIGHT_PAREN | functionApplication;
+    value | expression operator expression | function | LEFT_PAREN expression RIGHT_PAREN | functionApplication | tuple;
 
 integer:
     DIGIT+;

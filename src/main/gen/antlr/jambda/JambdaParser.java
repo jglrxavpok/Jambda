@@ -22,18 +22,20 @@ public class JambdaParser extends Parser {
 		LEFT_PAREN=15, RIGHT_PAREN=16, SMALL_ARROW=17, IDENTIFIER=18, LOWERCASE_LETTER=19, 
 		UPPERCASE_LETTER=20, WHITESPACE=21;
 	public static final int
-		RULE_file = 0, RULE_function = 1, RULE_functionDeclaration = 2, RULE_packageDeclaration = 3, 
-		RULE_importDeclaration = 4, RULE_lambda = 5, RULE_identifiers = 6, RULE_value = 7, 
-		RULE_floatingPointNumber = 8, RULE_expression = 9, RULE_integer = 10, 
-		RULE_operator = 11, RULE_letter = 12;
+		RULE_file = 0, RULE_function = 1, RULE_functionDeclaration = 2, RULE_tuple = 3, 
+		RULE_variableTuple = 4, RULE_type = 5, RULE_packageDeclaration = 6, RULE_importDeclaration = 7, 
+		RULE_lambda = 8, RULE_variables = 9, RULE_value = 10, RULE_floatingPointNumber = 11, 
+		RULE_functionApplication = 12, RULE_expression = 13, RULE_integer = 14, 
+		RULE_operator = 15, RULE_letter = 16;
 	public static final String[] ruleNames = {
-		"file", "function", "functionDeclaration", "packageDeclaration", "importDeclaration", 
-		"lambda", "identifiers", "value", "floatingPointNumber", "expression", 
-		"integer", "operator", "letter"
+		"file", "function", "functionDeclaration", "tuple", "variableTuple", "type", 
+		"packageDeclaration", "importDeclaration", "lambda", "variables", "value", 
+		"floatingPointNumber", "functionApplication", "expression", "integer", 
+		"operator", "letter"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'package '", "'import '", "'\\u03BB'", "'lambda '", "','", "'f'", 
+		null, "','", "'package '", "'import '", "'\\u03BB'", "'lambda '", "'f'", 
 		"'::'", null, "'.'", "'+'", "'-'", "'*'", "'/'", "':'", "'('", "')'", 
 		"'->'"
 	};
@@ -134,40 +136,40 @@ public class JambdaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(27);
+			setState(35);
 			_la = _input.LA(1);
-			if (_la==T__0) {
+			if (_la==T__1) {
 				{
-				setState(26);
+				setState(34);
 				packageDeclaration();
 				}
 			}
 
-			setState(32);
+			setState(40);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__1) {
+			while (_la==T__2) {
 				{
 				{
-				setState(29);
+				setState(37);
 				importDeclaration();
 				}
 				}
-				setState(34);
+				setState(42);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(38);
+			setState(46);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==IDENTIFIER) {
 				{
 				{
-				setState(35);
+				setState(43);
 				functionDeclaration();
 				}
 				}
-				setState(40);
+				setState(48);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -188,12 +190,15 @@ public class JambdaParser extends Parser {
 		public LambdaContext lambda() {
 			return getRuleContext(LambdaContext.class,0);
 		}
-		public IdentifiersContext identifiers() {
-			return getRuleContext(IdentifiersContext.class,0);
+		public VariablesContext variables() {
+			return getRuleContext(VariablesContext.class,0);
 		}
 		public TerminalNode PERIOD() { return getToken(JambdaParser.PERIOD, 0); }
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
+		}
+		public FunctionApplicationContext functionApplication() {
+			return getRuleContext(FunctionApplicationContext.class,0);
 		}
 		public FunctionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -218,16 +223,29 @@ public class JambdaParser extends Parser {
 		FunctionContext _localctx = new FunctionContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_function);
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(41);
-			lambda();
-			setState(42);
-			identifiers();
-			setState(43);
-			match(PERIOD);
-			setState(44);
-			expression(0);
+			setState(55);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(49);
+				lambda();
+				setState(50);
+				variables();
+				setState(51);
+				match(PERIOD);
+				setState(52);
+				expression(0);
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(54);
+				functionApplication();
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -242,15 +260,18 @@ public class JambdaParser extends Parser {
 	}
 
 	public static class FunctionDeclarationContext extends ParserRuleContext {
-		public List<TerminalNode> IDENTIFIER() { return getTokens(JambdaParser.IDENTIFIER); }
-		public TerminalNode IDENTIFIER(int i) {
-			return getToken(JambdaParser.IDENTIFIER, i);
-		}
+		public TerminalNode IDENTIFIER() { return getToken(JambdaParser.IDENTIFIER, 0); }
 		public TerminalNode COLON() { return getToken(JambdaParser.COLON, 0); }
 		public FunctionContext function() {
 			return getRuleContext(FunctionContext.class,0);
 		}
 		public TerminalNode DOUBLE_COLON() { return getToken(JambdaParser.DOUBLE_COLON, 0); }
+		public List<TypeContext> type() {
+			return getRuleContexts(TypeContext.class);
+		}
+		public TypeContext type(int i) {
+			return getRuleContext(TypeContext.class,i);
+		}
 		public TerminalNode SMALL_ARROW() { return getToken(JambdaParser.SMALL_ARROW, 0); }
 		public FunctionDeclarationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -278,27 +299,224 @@ public class JambdaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(46);
+			setState(57);
 			match(IDENTIFIER);
-			setState(51);
+			setState(63);
 			_la = _input.LA(1);
 			if (_la==DOUBLE_COLON) {
 				{
-				setState(47);
+				setState(58);
 				match(DOUBLE_COLON);
-				setState(48);
-				match(IDENTIFIER);
-				setState(49);
+				setState(59);
+				type();
+				setState(60);
 				match(SMALL_ARROW);
-				setState(50);
-				match(IDENTIFIER);
+				setState(61);
+				type();
 				}
 			}
 
-			setState(53);
+			setState(65);
 			match(COLON);
-			setState(54);
+			setState(66);
 			function();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class TupleContext extends ParserRuleContext {
+		public TerminalNode LEFT_PAREN() { return getToken(JambdaParser.LEFT_PAREN, 0); }
+		public List<ExpressionContext> expression() {
+			return getRuleContexts(ExpressionContext.class);
+		}
+		public ExpressionContext expression(int i) {
+			return getRuleContext(ExpressionContext.class,i);
+		}
+		public TerminalNode RIGHT_PAREN() { return getToken(JambdaParser.RIGHT_PAREN, 0); }
+		public TupleContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_tuple; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof JambdaListener ) ((JambdaListener)listener).enterTuple(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof JambdaListener ) ((JambdaListener)listener).exitTuple(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof JambdaVisitor ) return ((JambdaVisitor<? extends T>)visitor).visitTuple(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final TupleContext tuple() throws RecognitionException {
+		TupleContext _localctx = new TupleContext(_ctx, getState());
+		enterRule(_localctx, 6, RULE_tuple);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(68);
+			match(LEFT_PAREN);
+			setState(69);
+			expression(0);
+			setState(74);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==T__0) {
+				{
+				{
+				setState(70);
+				match(T__0);
+				setState(71);
+				expression(0);
+				}
+				}
+				setState(76);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(77);
+			match(RIGHT_PAREN);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class VariableTupleContext extends ParserRuleContext {
+		public TerminalNode LEFT_PAREN() { return getToken(JambdaParser.LEFT_PAREN, 0); }
+		public List<TerminalNode> IDENTIFIER() { return getTokens(JambdaParser.IDENTIFIER); }
+		public TerminalNode IDENTIFIER(int i) {
+			return getToken(JambdaParser.IDENTIFIER, i);
+		}
+		public TerminalNode RIGHT_PAREN() { return getToken(JambdaParser.RIGHT_PAREN, 0); }
+		public VariableTupleContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_variableTuple; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof JambdaListener ) ((JambdaListener)listener).enterVariableTuple(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof JambdaListener ) ((JambdaListener)listener).exitVariableTuple(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof JambdaVisitor ) return ((JambdaVisitor<? extends T>)visitor).visitVariableTuple(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final VariableTupleContext variableTuple() throws RecognitionException {
+		VariableTupleContext _localctx = new VariableTupleContext(_ctx, getState());
+		enterRule(_localctx, 8, RULE_variableTuple);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(79);
+			match(LEFT_PAREN);
+			setState(80);
+			match(IDENTIFIER);
+			setState(85);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==T__0) {
+				{
+				{
+				setState(81);
+				match(T__0);
+				setState(82);
+				match(IDENTIFIER);
+				}
+				}
+				setState(87);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(88);
+			match(RIGHT_PAREN);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class TypeContext extends ParserRuleContext {
+		public TerminalNode IDENTIFIER() { return getToken(JambdaParser.IDENTIFIER, 0); }
+		public VariableTupleContext variableTuple() {
+			return getRuleContext(VariableTupleContext.class,0);
+		}
+		public TypeContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_type; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof JambdaListener ) ((JambdaListener)listener).enterType(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof JambdaListener ) ((JambdaListener)listener).exitType(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof JambdaVisitor ) return ((JambdaVisitor<? extends T>)visitor).visitType(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final TypeContext type() throws RecognitionException {
+		TypeContext _localctx = new TypeContext(_ctx, getState());
+		enterRule(_localctx, 10, RULE_type);
+		try {
+			setState(92);
+			switch (_input.LA(1)) {
+			case IDENTIFIER:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(90);
+				match(IDENTIFIER);
+				}
+				break;
+			case LEFT_PAREN:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(91);
+				variableTuple();
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -316,6 +534,10 @@ public class JambdaParser extends Parser {
 		public List<TerminalNode> IDENTIFIER() { return getTokens(JambdaParser.IDENTIFIER); }
 		public TerminalNode IDENTIFIER(int i) {
 			return getToken(JambdaParser.IDENTIFIER, i);
+		}
+		public List<TerminalNode> PERIOD() { return getTokens(JambdaParser.PERIOD); }
+		public TerminalNode PERIOD(int i) {
+			return getToken(JambdaParser.PERIOD, i);
 		}
 		public PackageDeclarationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -338,28 +560,28 @@ public class JambdaParser extends Parser {
 
 	public final PackageDeclarationContext packageDeclaration() throws RecognitionException {
 		PackageDeclarationContext _localctx = new PackageDeclarationContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_packageDeclaration);
+		enterRule(_localctx, 12, RULE_packageDeclaration);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(56);
-			match(T__0);
-			setState(57);
+			setState(94);
+			match(T__1);
+			setState(95);
 			match(IDENTIFIER);
-			setState(62);
+			setState(100);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==PERIOD) {
 				{
 				{
-				setState(58);
+				setState(96);
 				match(PERIOD);
-				setState(59);
+				setState(97);
 				match(IDENTIFIER);
 				}
 				}
-				setState(64);
+				setState(102);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -380,6 +602,10 @@ public class JambdaParser extends Parser {
 		public List<TerminalNode> IDENTIFIER() { return getTokens(JambdaParser.IDENTIFIER); }
 		public TerminalNode IDENTIFIER(int i) {
 			return getToken(JambdaParser.IDENTIFIER, i);
+		}
+		public List<TerminalNode> PERIOD() { return getTokens(JambdaParser.PERIOD); }
+		public TerminalNode PERIOD(int i) {
+			return getToken(JambdaParser.PERIOD, i);
 		}
 		public ImportDeclarationContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -402,28 +628,28 @@ public class JambdaParser extends Parser {
 
 	public final ImportDeclarationContext importDeclaration() throws RecognitionException {
 		ImportDeclarationContext _localctx = new ImportDeclarationContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_importDeclaration);
+		enterRule(_localctx, 14, RULE_importDeclaration);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(65);
-			match(T__1);
-			setState(66);
+			setState(103);
+			match(T__2);
+			setState(104);
 			match(IDENTIFIER);
-			setState(71);
+			setState(109);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==PERIOD) {
 				{
 				{
-				setState(67);
+				setState(105);
 				match(PERIOD);
-				setState(68);
+				setState(106);
 				match(IDENTIFIER);
 				}
 				}
-				setState(73);
+				setState(111);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -462,14 +688,14 @@ public class JambdaParser extends Parser {
 
 	public final LambdaContext lambda() throws RecognitionException {
 		LambdaContext _localctx = new LambdaContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_lambda);
+		enterRule(_localctx, 16, RULE_lambda);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(74);
+			setState(112);
 			_la = _input.LA(1);
-			if ( !(_la==T__2 || _la==T__3) ) {
+			if ( !(_la==T__3 || _la==T__4) ) {
 			_errHandler.recoverInline(this);
 			} else {
 				consume();
@@ -487,55 +713,52 @@ public class JambdaParser extends Parser {
 		return _localctx;
 	}
 
-	public static class IdentifiersContext extends ParserRuleContext {
-		public List<TerminalNode> IDENTIFIER() { return getTokens(JambdaParser.IDENTIFIER); }
-		public TerminalNode IDENTIFIER(int i) {
-			return getToken(JambdaParser.IDENTIFIER, i);
+	public static class VariablesContext extends ParserRuleContext {
+		public TerminalNode IDENTIFIER() { return getToken(JambdaParser.IDENTIFIER, 0); }
+		public VariableTupleContext variableTuple() {
+			return getRuleContext(VariableTupleContext.class,0);
 		}
-		public IdentifiersContext(ParserRuleContext parent, int invokingState) {
+		public VariablesContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_identifiers; }
+		@Override public int getRuleIndex() { return RULE_variables; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof JambdaListener ) ((JambdaListener)listener).enterIdentifiers(this);
+			if ( listener instanceof JambdaListener ) ((JambdaListener)listener).enterVariables(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof JambdaListener ) ((JambdaListener)listener).exitIdentifiers(this);
+			if ( listener instanceof JambdaListener ) ((JambdaListener)listener).exitVariables(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof JambdaVisitor ) return ((JambdaVisitor<? extends T>)visitor).visitIdentifiers(this);
+			if ( visitor instanceof JambdaVisitor ) return ((JambdaVisitor<? extends T>)visitor).visitVariables(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final IdentifiersContext identifiers() throws RecognitionException {
-		IdentifiersContext _localctx = new IdentifiersContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_identifiers);
-		int _la;
+	public final VariablesContext variables() throws RecognitionException {
+		VariablesContext _localctx = new VariablesContext(_ctx, getState());
+		enterRule(_localctx, 18, RULE_variables);
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(76);
-			match(IDENTIFIER);
-			setState(81);
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			while (_la==T__4) {
+			setState(116);
+			switch (_input.LA(1)) {
+			case IDENTIFIER:
+				enterOuterAlt(_localctx, 1);
 				{
-				{
-				setState(77);
-				match(T__4);
-				setState(78);
+				setState(114);
 				match(IDENTIFIER);
 				}
+				break;
+			case LEFT_PAREN:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(115);
+				variableTuple();
 				}
-				setState(83);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-			}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -578,29 +801,29 @@ public class JambdaParser extends Parser {
 
 	public final ValueContext value() throws RecognitionException {
 		ValueContext _localctx = new ValueContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_value);
+		enterRule(_localctx, 20, RULE_value);
 		try {
-			setState(87);
+			setState(121);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,11,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(84);
+				setState(118);
 				match(IDENTIFIER);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(85);
+				setState(119);
 				integer();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(86);
+				setState(120);
 				floatingPointNumber();
 				}
 				break;
@@ -647,18 +870,111 @@ public class JambdaParser extends Parser {
 
 	public final FloatingPointNumberContext floatingPointNumber() throws RecognitionException {
 		FloatingPointNumberContext _localctx = new FloatingPointNumberContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_floatingPointNumber);
+		enterRule(_localctx, 22, RULE_floatingPointNumber);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(89);
+			setState(123);
 			integer();
-			setState(90);
+			setState(124);
 			match(PERIOD);
-			setState(91);
+			setState(125);
 			integer();
-			setState(92);
+			setState(126);
 			match(FLOAT_TERMINATOR);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class FunctionApplicationContext extends ParserRuleContext {
+		public TerminalNode IDENTIFIER() { return getToken(JambdaParser.IDENTIFIER, 0); }
+		public List<ExpressionContext> expression() {
+			return getRuleContexts(ExpressionContext.class);
+		}
+		public ExpressionContext expression(int i) {
+			return getRuleContext(ExpressionContext.class,i);
+		}
+		public TerminalNode LEFT_PAREN() { return getToken(JambdaParser.LEFT_PAREN, 0); }
+		public TerminalNode RIGHT_PAREN() { return getToken(JambdaParser.RIGHT_PAREN, 0); }
+		public FunctionApplicationContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_functionApplication; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof JambdaListener ) ((JambdaListener)listener).enterFunctionApplication(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof JambdaListener ) ((JambdaListener)listener).exitFunctionApplication(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof JambdaVisitor ) return ((JambdaVisitor<? extends T>)visitor).visitFunctionApplication(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final FunctionApplicationContext functionApplication() throws RecognitionException {
+		FunctionApplicationContext _localctx = new FunctionApplicationContext(_ctx, getState());
+		enterRule(_localctx, 24, RULE_functionApplication);
+		int _la;
+		try {
+			setState(143);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,13,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(129);
+				match(IDENTIFIER);
+				setState(130);
+				expression(0);
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(131);
+				match(IDENTIFIER);
+				setState(132);
+				match(LEFT_PAREN);
+				setState(133);
+				expression(0);
+				setState(138);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				while (_la==T__0) {
+					{
+					{
+					setState(134);
+					match(T__0);
+					setState(135);
+					expression(0);
+					}
+					}
+					setState(140);
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				}
+				setState(141);
+				match(RIGHT_PAREN);
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -687,6 +1003,12 @@ public class JambdaParser extends Parser {
 			return getRuleContext(ExpressionContext.class,i);
 		}
 		public TerminalNode RIGHT_PAREN() { return getToken(JambdaParser.RIGHT_PAREN, 0); }
+		public FunctionApplicationContext functionApplication() {
+			return getRuleContext(FunctionApplicationContext.class,0);
+		}
+		public TupleContext tuple() {
+			return getRuleContext(TupleContext.class,0);
+		}
 		public OperatorContext operator() {
 			return getRuleContext(OperatorContext.class,0);
 		}
@@ -718,45 +1040,54 @@ public class JambdaParser extends Parser {
 		int _parentState = getState();
 		ExpressionContext _localctx = new ExpressionContext(_ctx, _parentState);
 		ExpressionContext _prevctx = _localctx;
-		int _startState = 18;
-		enterRecursionRule(_localctx, 18, RULE_expression, _p);
+		int _startState = 26;
+		enterRecursionRule(_localctx, 26, RULE_expression, _p);
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(101);
-			switch (_input.LA(1)) {
-			case DIGIT:
-			case IDENTIFIER:
+			setState(154);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,14,_ctx) ) {
+			case 1:
 				{
-				setState(95);
+				setState(146);
 				value();
 				}
 				break;
-			case T__2:
-			case T__3:
+			case 2:
 				{
-				setState(96);
+				setState(147);
 				function();
 				}
 				break;
-			case LEFT_PAREN:
+			case 3:
 				{
-				setState(97);
+				setState(148);
 				match(LEFT_PAREN);
-				setState(98);
+				setState(149);
 				expression(0);
-				setState(99);
+				setState(150);
 				match(RIGHT_PAREN);
 				}
 				break;
-			default:
-				throw new NoViableAltException(this);
+			case 4:
+				{
+				setState(152);
+				functionApplication();
+				}
+				break;
+			case 5:
+				{
+				setState(153);
+				tuple();
+				}
+				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(109);
+			setState(162);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,9,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,15,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -765,18 +1096,18 @@ public class JambdaParser extends Parser {
 					{
 					_localctx = new ExpressionContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_expression);
-					setState(103);
-					if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
-					setState(104);
+					setState(156);
+					if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
+					setState(157);
 					operator();
-					setState(105);
-					expression(4);
+					setState(158);
+					expression(6);
 					}
 					} 
 				}
-				setState(111);
+				setState(164);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,9,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,15,_ctx);
 			}
 			}
 		}
@@ -817,12 +1148,12 @@ public class JambdaParser extends Parser {
 
 	public final IntegerContext integer() throws RecognitionException {
 		IntegerContext _localctx = new IntegerContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_integer);
+		enterRule(_localctx, 28, RULE_integer);
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(113); 
+			setState(166); 
 			_errHandler.sync(this);
 			_alt = 1;
 			do {
@@ -830,7 +1161,7 @@ public class JambdaParser extends Parser {
 				case 1:
 					{
 					{
-					setState(112);
+					setState(165);
 					match(DIGIT);
 					}
 					}
@@ -838,9 +1169,9 @@ public class JambdaParser extends Parser {
 				default:
 					throw new NoViableAltException(this);
 				}
-				setState(115); 
+				setState(168); 
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,10,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,16,_ctx);
 			} while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER );
 			}
 		}
@@ -881,12 +1212,12 @@ public class JambdaParser extends Parser {
 
 	public final OperatorContext operator() throws RecognitionException {
 		OperatorContext _localctx = new OperatorContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_operator);
+		enterRule(_localctx, 30, RULE_operator);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(117);
+			setState(170);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << PLUS) | (1L << MINUS) | (1L << MULTIPLY) | (1L << DIVISION))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -930,12 +1261,12 @@ public class JambdaParser extends Parser {
 
 	public final LetterContext letter() throws RecognitionException {
 		LetterContext _localctx = new LetterContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_letter);
+		enterRule(_localctx, 32, RULE_letter);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(119);
+			setState(172);
 			_la = _input.LA(1);
 			if ( !(_la==LOWERCASE_LETTER || _la==UPPERCASE_LETTER) ) {
 			_errHandler.recoverInline(this);
@@ -957,7 +1288,7 @@ public class JambdaParser extends Parser {
 
 	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
 		switch (ruleIndex) {
-		case 9:
+		case 13:
 			return expression_sempred((ExpressionContext)_localctx, predIndex);
 		}
 		return true;
@@ -965,42 +1296,63 @@ public class JambdaParser extends Parser {
 	private boolean expression_sempred(ExpressionContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 3);
+			return precpred(_ctx, 5);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\27|\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4"+
-		"\f\t\f\4\r\t\r\4\16\t\16\3\2\5\2\36\n\2\3\2\7\2!\n\2\f\2\16\2$\13\2\3"+
-		"\2\7\2\'\n\2\f\2\16\2*\13\2\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\5"+
-		"\4\66\n\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5\7\5?\n\5\f\5\16\5B\13\5\3\6\3\6"+
-		"\3\6\3\6\7\6H\n\6\f\6\16\6K\13\6\3\7\3\7\3\b\3\b\3\b\7\bR\n\b\f\b\16\b"+
-		"U\13\b\3\t\3\t\3\t\5\tZ\n\t\3\n\3\n\3\n\3\n\3\n\3\13\3\13\3\13\3\13\3"+
-		"\13\3\13\3\13\5\13h\n\13\3\13\3\13\3\13\3\13\7\13n\n\13\f\13\16\13q\13"+
-		"\13\3\f\6\ft\n\f\r\f\16\fu\3\r\3\r\3\16\3\16\3\16\2\3\24\17\2\4\6\b\n"+
-		"\f\16\20\22\24\26\30\32\2\5\3\2\5\6\3\2\f\17\3\2\25\26{\2\35\3\2\2\2\4"+
-		"+\3\2\2\2\6\60\3\2\2\2\b:\3\2\2\2\nC\3\2\2\2\fL\3\2\2\2\16N\3\2\2\2\20"+
-		"Y\3\2\2\2\22[\3\2\2\2\24g\3\2\2\2\26s\3\2\2\2\30w\3\2\2\2\32y\3\2\2\2"+
-		"\34\36\5\b\5\2\35\34\3\2\2\2\35\36\3\2\2\2\36\"\3\2\2\2\37!\5\n\6\2 \37"+
-		"\3\2\2\2!$\3\2\2\2\" \3\2\2\2\"#\3\2\2\2#(\3\2\2\2$\"\3\2\2\2%\'\5\6\4"+
-		"\2&%\3\2\2\2\'*\3\2\2\2(&\3\2\2\2()\3\2\2\2)\3\3\2\2\2*(\3\2\2\2+,\5\f"+
-		"\7\2,-\5\16\b\2-.\7\13\2\2./\5\24\13\2/\5\3\2\2\2\60\65\7\24\2\2\61\62"+
-		"\7\t\2\2\62\63\7\24\2\2\63\64\7\23\2\2\64\66\7\24\2\2\65\61\3\2\2\2\65"+
-		"\66\3\2\2\2\66\67\3\2\2\2\678\7\20\2\289\5\4\3\29\7\3\2\2\2:;\7\3\2\2"+
-		";@\7\24\2\2<=\7\13\2\2=?\7\24\2\2><\3\2\2\2?B\3\2\2\2@>\3\2\2\2@A\3\2"+
-		"\2\2A\t\3\2\2\2B@\3\2\2\2CD\7\4\2\2DI\7\24\2\2EF\7\13\2\2FH\7\24\2\2G"+
-		"E\3\2\2\2HK\3\2\2\2IG\3\2\2\2IJ\3\2\2\2J\13\3\2\2\2KI\3\2\2\2LM\t\2\2"+
-		"\2M\r\3\2\2\2NS\7\24\2\2OP\7\7\2\2PR\7\24\2\2QO\3\2\2\2RU\3\2\2\2SQ\3"+
-		"\2\2\2ST\3\2\2\2T\17\3\2\2\2US\3\2\2\2VZ\7\24\2\2WZ\5\26\f\2XZ\5\22\n"+
-		"\2YV\3\2\2\2YW\3\2\2\2YX\3\2\2\2Z\21\3\2\2\2[\\\5\26\f\2\\]\7\13\2\2]"+
-		"^\5\26\f\2^_\7\b\2\2_\23\3\2\2\2`a\b\13\1\2ah\5\20\t\2bh\5\4\3\2cd\7\21"+
-		"\2\2de\5\24\13\2ef\7\22\2\2fh\3\2\2\2g`\3\2\2\2gb\3\2\2\2gc\3\2\2\2ho"+
-		"\3\2\2\2ij\f\5\2\2jk\5\30\r\2kl\5\24\13\6ln\3\2\2\2mi\3\2\2\2nq\3\2\2"+
-		"\2om\3\2\2\2op\3\2\2\2p\25\3\2\2\2qo\3\2\2\2rt\7\n\2\2sr\3\2\2\2tu\3\2"+
-		"\2\2us\3\2\2\2uv\3\2\2\2v\27\3\2\2\2wx\t\3\2\2x\31\3\2\2\2yz\t\4\2\2z"+
-		"\33\3\2\2\2\r\35\"(\65@ISYgou";
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\27\u00b1\4\2\t\2"+
+		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
+		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
+		"\3\2\5\2&\n\2\3\2\7\2)\n\2\f\2\16\2,\13\2\3\2\7\2/\n\2\f\2\16\2\62\13"+
+		"\2\3\3\3\3\3\3\3\3\3\3\3\3\5\3:\n\3\3\4\3\4\3\4\3\4\3\4\3\4\5\4B\n\4\3"+
+		"\4\3\4\3\4\3\5\3\5\3\5\3\5\7\5K\n\5\f\5\16\5N\13\5\3\5\3\5\3\6\3\6\3\6"+
+		"\3\6\7\6V\n\6\f\6\16\6Y\13\6\3\6\3\6\3\7\3\7\5\7_\n\7\3\b\3\b\3\b\3\b"+
+		"\7\be\n\b\f\b\16\bh\13\b\3\t\3\t\3\t\3\t\7\tn\n\t\f\t\16\tq\13\t\3\n\3"+
+		"\n\3\13\3\13\5\13w\n\13\3\f\3\f\3\f\5\f|\n\f\3\r\3\r\3\r\3\r\3\r\3\16"+
+		"\3\16\3\16\3\16\3\16\3\16\3\16\3\16\7\16\u008b\n\16\f\16\16\16\u008e\13"+
+		"\16\3\16\3\16\5\16\u0092\n\16\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17"+
+		"\3\17\5\17\u009d\n\17\3\17\3\17\3\17\3\17\7\17\u00a3\n\17\f\17\16\17\u00a6"+
+		"\13\17\3\20\6\20\u00a9\n\20\r\20\16\20\u00aa\3\21\3\21\3\22\3\22\3\22"+
+		"\2\3\34\23\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"\2\5\3\2\6\7\3\2\f"+
+		"\17\3\2\25\26\u00b5\2%\3\2\2\2\49\3\2\2\2\6;\3\2\2\2\bF\3\2\2\2\nQ\3\2"+
+		"\2\2\f^\3\2\2\2\16`\3\2\2\2\20i\3\2\2\2\22r\3\2\2\2\24v\3\2\2\2\26{\3"+
+		"\2\2\2\30}\3\2\2\2\32\u0091\3\2\2\2\34\u009c\3\2\2\2\36\u00a8\3\2\2\2"+
+		" \u00ac\3\2\2\2\"\u00ae\3\2\2\2$&\5\16\b\2%$\3\2\2\2%&\3\2\2\2&*\3\2\2"+
+		"\2\')\5\20\t\2(\'\3\2\2\2),\3\2\2\2*(\3\2\2\2*+\3\2\2\2+\60\3\2\2\2,*"+
+		"\3\2\2\2-/\5\6\4\2.-\3\2\2\2/\62\3\2\2\2\60.\3\2\2\2\60\61\3\2\2\2\61"+
+		"\3\3\2\2\2\62\60\3\2\2\2\63\64\5\22\n\2\64\65\5\24\13\2\65\66\7\13\2\2"+
+		"\66\67\5\34\17\2\67:\3\2\2\28:\5\32\16\29\63\3\2\2\298\3\2\2\2:\5\3\2"+
+		"\2\2;A\7\24\2\2<=\7\t\2\2=>\5\f\7\2>?\7\23\2\2?@\5\f\7\2@B\3\2\2\2A<\3"+
+		"\2\2\2AB\3\2\2\2BC\3\2\2\2CD\7\20\2\2DE\5\4\3\2E\7\3\2\2\2FG\7\21\2\2"+
+		"GL\5\34\17\2HI\7\3\2\2IK\5\34\17\2JH\3\2\2\2KN\3\2\2\2LJ\3\2\2\2LM\3\2"+
+		"\2\2MO\3\2\2\2NL\3\2\2\2OP\7\22\2\2P\t\3\2\2\2QR\7\21\2\2RW\7\24\2\2S"+
+		"T\7\3\2\2TV\7\24\2\2US\3\2\2\2VY\3\2\2\2WU\3\2\2\2WX\3\2\2\2XZ\3\2\2\2"+
+		"YW\3\2\2\2Z[\7\22\2\2[\13\3\2\2\2\\_\7\24\2\2]_\5\n\6\2^\\\3\2\2\2^]\3"+
+		"\2\2\2_\r\3\2\2\2`a\7\4\2\2af\7\24\2\2bc\7\13\2\2ce\7\24\2\2db\3\2\2\2"+
+		"eh\3\2\2\2fd\3\2\2\2fg\3\2\2\2g\17\3\2\2\2hf\3\2\2\2ij\7\5\2\2jo\7\24"+
+		"\2\2kl\7\13\2\2ln\7\24\2\2mk\3\2\2\2nq\3\2\2\2om\3\2\2\2op\3\2\2\2p\21"+
+		"\3\2\2\2qo\3\2\2\2rs\t\2\2\2s\23\3\2\2\2tw\7\24\2\2uw\5\n\6\2vt\3\2\2"+
+		"\2vu\3\2\2\2w\25\3\2\2\2x|\7\24\2\2y|\5\36\20\2z|\5\30\r\2{x\3\2\2\2{"+
+		"y\3\2\2\2{z\3\2\2\2|\27\3\2\2\2}~\5\36\20\2~\177\7\13\2\2\177\u0080\5"+
+		"\36\20\2\u0080\u0081\7\b\2\2\u0081\31\3\2\2\2\u0082\u0092\3\2\2\2\u0083"+
+		"\u0084\7\24\2\2\u0084\u0092\5\34\17\2\u0085\u0086\7\24\2\2\u0086\u0087"+
+		"\7\21\2\2\u0087\u008c\5\34\17\2\u0088\u0089\7\3\2\2\u0089\u008b\5\34\17"+
+		"\2\u008a\u0088\3\2\2\2\u008b\u008e\3\2\2\2\u008c\u008a\3\2\2\2\u008c\u008d"+
+		"\3\2\2\2\u008d\u008f\3\2\2\2\u008e\u008c\3\2\2\2\u008f\u0090\7\22\2\2"+
+		"\u0090\u0092\3\2\2\2\u0091\u0082\3\2\2\2\u0091\u0083\3\2\2\2\u0091\u0085"+
+		"\3\2\2\2\u0092\33\3\2\2\2\u0093\u0094\b\17\1\2\u0094\u009d\5\26\f\2\u0095"+
+		"\u009d\5\4\3\2\u0096\u0097\7\21\2\2\u0097\u0098\5\34\17\2\u0098\u0099"+
+		"\7\22\2\2\u0099\u009d\3\2\2\2\u009a\u009d\5\32\16\2\u009b\u009d\5\b\5"+
+		"\2\u009c\u0093\3\2\2\2\u009c\u0095\3\2\2\2\u009c\u0096\3\2\2\2\u009c\u009a"+
+		"\3\2\2\2\u009c\u009b\3\2\2\2\u009d\u00a4\3\2\2\2\u009e\u009f\f\7\2\2\u009f"+
+		"\u00a0\5 \21\2\u00a0\u00a1\5\34\17\b\u00a1\u00a3\3\2\2\2\u00a2\u009e\3"+
+		"\2\2\2\u00a3\u00a6\3\2\2\2\u00a4\u00a2\3\2\2\2\u00a4\u00a5\3\2\2\2\u00a5"+
+		"\35\3\2\2\2\u00a6\u00a4\3\2\2\2\u00a7\u00a9\7\n\2\2\u00a8\u00a7\3\2\2"+
+		"\2\u00a9\u00aa\3\2\2\2\u00aa\u00a8\3\2\2\2\u00aa\u00ab\3\2\2\2\u00ab\37"+
+		"\3\2\2\2\u00ac\u00ad\t\3\2\2\u00ad!\3\2\2\2\u00ae\u00af\t\4\2\2\u00af"+
+		"#\3\2\2\2\23%*\609ALW^fov{\u008c\u0091\u009c\u00a4\u00aa";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
