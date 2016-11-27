@@ -6,7 +6,7 @@ file:
     functionDeclaration*;
 
 function:
-    lambda identifiers PERIOD expression;
+    lambda identifiers PERIOD expression | functionApplication;
 
 functionDeclaration:
     IDENTIFIER (DOUBLE_COLON IDENTIFIER SMALL_ARROW IDENTIFIER)? COLON function;
@@ -29,8 +29,12 @@ value:
 floatingPointNumber:
     integer PERIOD integer FLOAT_TERMINATOR;
 
+functionApplication:
+    | IDENTIFIER/*function*/ expression/*arg*/
+    | IDENTIFIER/*function*/ LEFT_PAREN expression (',' expression) RIGHT_PAREN;
+
 expression:
-    value | expression operator expression | function | LEFT_PAREN expression RIGHT_PAREN;
+    value | expression operator expression | function | LEFT_PAREN expression RIGHT_PAREN | functionApplication;
 
 integer:
     DIGIT+;
