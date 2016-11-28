@@ -18,6 +18,26 @@ public interface JambdaListener extends ParseTreeListener {
 	 */
 	void exitFile(JambdaParser.FileContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link JambdaParser#declarations}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclarations(JambdaParser.DeclarationsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JambdaParser#declarations}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclarations(JambdaParser.DeclarationsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link JambdaParser#constantDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterConstantDeclaration(JambdaParser.ConstantDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JambdaParser#constantDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitConstantDeclaration(JambdaParser.ConstantDeclarationContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link JambdaParser#function}.
 	 * @param ctx the parse tree
 	 */

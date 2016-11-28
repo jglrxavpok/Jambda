@@ -3,25 +3,25 @@ package jambda;
 import java.util.StringJoiner;
 
 public class JambdaTupleType extends JambdaType {
-    private final JambdaType componentType;
+    private final JambdaType[] componentTypes;
     private final int length;
 
-    public JambdaTupleType(JambdaType componentType, int length) {
-        super(createName(componentType, length));
-        this.componentType = componentType;
-        this.length = length;
+    public JambdaTupleType(JambdaType... componentTypes) {
+        super(createName(componentTypes));
+        this.componentTypes = componentTypes;
+        this.length = componentTypes.length;
     }
 
-    private static String createName(JambdaType type, int length) {
+    private static String createName(JambdaType... types) {
         StringJoiner joiner = new StringJoiner(", ");
-        for (int i = 0; i < length; i++) {
-            joiner.add(type.getName());
+        for (int i = 0; i < types.length; i++) {
+            joiner.add(types[i].getName());
         }
         return joiner.toString();
     }
 
-    public JambdaType getComponentType() {
-        return componentType;
+    public JambdaType[] getComponentTypes() {
+        return componentTypes;
     }
 
     public int getLength() {

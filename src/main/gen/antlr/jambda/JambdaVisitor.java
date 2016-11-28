@@ -17,6 +17,18 @@ public interface JambdaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFile(JambdaParser.FileContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link JambdaParser#declarations}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDeclarations(JambdaParser.DeclarationsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link JambdaParser#constantDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConstantDeclaration(JambdaParser.ConstantDeclarationContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link JambdaParser#function}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

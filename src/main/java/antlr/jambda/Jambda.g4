@@ -3,7 +3,13 @@ grammar Jambda;
 file:
     packageDeclaration?
     importDeclaration*
-    functionDeclaration*;
+    declarations*;
+
+declarations:
+    functionDeclaration | constantDeclaration;
+
+constantDeclaration:
+    IDENTIFIER EQUAL_SIGN expression;
 
 function:
     lambda variables PERIOD expression | functionApplication;
@@ -15,7 +21,7 @@ tuple:
     LEFT_PAREN expression (',' expression)* RIGHT_PAREN;
 
 variableTuple:
-    LEFT_PAREN IDENTIFIER (',' IDENTIFIER)* RIGHT_PAREN;
+    LEFT_PAREN type (',' type)* RIGHT_PAREN;
 
 type:
     IDENTIFIER | variableTuple;
@@ -36,7 +42,7 @@ value:
     IDENTIFIER | integer | floatingPointNumber;
 
 floatingPointNumber:
-    integer PERIOD integer FLOAT_TERMINATOR;
+    integer (PERIOD integer)? FLOAT_TERMINATOR;
 
 functionApplication:
     | IDENTIFIER/*function*/ expression/*arg*/
@@ -86,6 +92,9 @@ RIGHT_PAREN:
 
 SMALL_ARROW:
     '->';
+
+EQUAL_SIGN:
+    '=';
 
 IDENTIFIER:
     [a-zA-Z_]+;

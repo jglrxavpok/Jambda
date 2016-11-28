@@ -1,3 +1,5 @@
+import jambda.JambdaTupleType;
+import jambda.JambdaType;
 import jambda.compiler.CompiledJambdaCode;
 import jambda.compiler.CompiledJambdaFunction;
 import jambda.compiler.JambdaCompiler;
@@ -39,5 +41,19 @@ public class TestCompiler {
 
         assertEquals("Argument type constraint must be 'Natural'", "Natural", identityFunction.getArgumentConstraint().getName());
         assertEquals("Return type constraint must be 'Natural'", "Natural", identityFunction.getReturnConstraint().getName());
+    }
+
+    @Test
+    public void testTypeConstraints() throws IOException {
+        JambdaCompiler compiler = new JambdaCompiler(getClass().getResourceAsStream("/TestTuples.jl"));
+        CompiledJambdaCode result = compiler.compile();
+        CompiledJambdaFunction tupleFunction = result.getFunctions().get(0);
+        assertTrue("Argument type constraint exists", tupleFunction.getArgumentConstraint() != null);
+        assertTrue("Argument type constraint must be a Tuple", tupleFunction.getArgumentConstraint() instanceof JambdaTupleType);
+        assertTrue("Argument type constraint must be a Tuple", tupleFunction.getArgumentConstraint() instanceof JambdaTupleType);
+        JambdaTupleType tupleType = (JambdaTupleType) tupleFunction.getArgumentConstraint();
+        assertEquals("Tuple length must be of 2", 2, tupleType.getLength());
+        assertEquals("Natural", tupleType.getComponentTypes()[0].getName());
+        assertEquals("Float", tupleType.getComponentTypes()[1].getName());
     }
 }
