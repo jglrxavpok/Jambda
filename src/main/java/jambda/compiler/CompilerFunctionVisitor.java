@@ -46,6 +46,9 @@ class CompilerFunctionVisitor extends JambdaBaseVisitor<CompiledJambdaFunction> 
             function.argumentConstraint = types[0];
             function.returnConstraint = types[1];
         }
+
+        JambdaParser.FunctionContext functionContext = ctx.function();
+        JambdaParser.ExpressionContext expressionContext = functionContext.expression();
         return function;
     }
 

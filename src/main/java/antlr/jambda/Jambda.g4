@@ -12,7 +12,7 @@ constantDeclaration:
     IDENTIFIER EQUAL_SIGN expression;
 
 function:
-    lambda variables PERIOD expression | functionApplication;
+    lambda variables PERIOD expression;
 
 functionDeclaration:
     IDENTIFIER (DOUBLE_COLON type SMALL_ARROW type)? COLON function;

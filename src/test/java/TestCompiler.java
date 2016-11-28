@@ -50,7 +50,6 @@ public class TestCompiler {
         CompiledJambdaFunction tupleFunction = result.getFunctions().get(0);
         assertTrue("Argument type constraint exists", tupleFunction.getArgumentConstraint() != null);
         assertTrue("Argument type constraint must be a Tuple", tupleFunction.getArgumentConstraint() instanceof JambdaTupleType);
-        assertTrue("Argument type constraint must be a Tuple", tupleFunction.getArgumentConstraint() instanceof JambdaTupleType);
         JambdaTupleType tupleType = (JambdaTupleType) tupleFunction.getArgumentConstraint();
         assertEquals("Tuple length must be of 2", 2, tupleType.getLength());
         assertEquals("Natural", tupleType.getComponentTypes()[0].getName());
