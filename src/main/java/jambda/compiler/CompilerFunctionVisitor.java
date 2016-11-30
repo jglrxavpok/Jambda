@@ -48,6 +48,12 @@ class CompilerFunctionVisitor extends JambdaBaseVisitor<CompiledJambdaFunction> 
         }
 
         JambdaParser.FunctionContext functionContext = ctx.function();
+        JambdaParser.VariablesContext variables = functionContext.variables();
+        if(variables.IDENTIFIER() != null) {
+            function.argumentName = variables.IDENTIFIER().getText();
+        } else { // it is a tuple
+            function.argumentName = "$tuple";
+        }
         JambdaParser.ExpressionContext expressionContext = functionContext.expression();
         return function;
     }

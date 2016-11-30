@@ -44,7 +44,7 @@ public class TestCompiler {
     }
 
     @Test
-    public void testTypeConstraints() throws IOException {
+    public void testTuples() throws IOException {
         JambdaCompiler compiler = new JambdaCompiler(getClass().getResourceAsStream("/TestTuples.jl"));
         CompiledJambdaCode result = compiler.compile();
         CompiledJambdaFunction tupleFunction = result.getFunctions().get(0);

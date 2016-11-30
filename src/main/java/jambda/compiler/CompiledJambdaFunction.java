@@ -7,6 +7,7 @@ public class CompiledJambdaFunction {
     String name;
     JambdaType argumentConstraint;
     JambdaType returnConstraint;
+    String argumentName;
 
     public CompiledJambdaFunction() {
         argumentConstraint = JambdaType.ANY;

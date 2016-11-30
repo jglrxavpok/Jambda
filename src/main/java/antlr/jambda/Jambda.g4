@@ -39,7 +39,7 @@ variables:
     IDENTIFIER | variableTuple;
 
 value:
-    IDENTIFIER | integer | floatingPointNumber;
+    IDENTIFIER | integer | floatingPointNumber | value;
 
 floatingPointNumber:
     integer (PERIOD integer)? FLOAT_TERMINATOR;
@@ -49,7 +49,7 @@ functionApplication:
     | IDENTIFIER/*function*/ LEFT_PAREN expression (',' expression)* RIGHT_PAREN;
 
 expression:
-    value | expression operator expression | function | LEFT_PAREN expression RIGHT_PAREN | functionApplication | tuple;
+    value | expression operator expression | function | LEFT_PAREN expression RIGHT_PAREN | functionApplication;
 
 integer:
     DIGIT+;
